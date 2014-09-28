@@ -18,7 +18,12 @@ int main ()
 
 {
     
-    int auswahl;            //1=Schere 2=Stein 3=Papier
+    enum auswahlEnum{
+        SCHERE = 3,
+        STEIN = 1,
+        PAPIER				//Wert wird eins grösser als Vorgängerwert (also 2)
+    };
+    auswahlEnum auswahl = SCHERE;
     int zufallszahl;        //generierte Zufallszahl 1-3
     int cpwins  =   0;      //Computerwins
     int usrwins =   0;      //Userwins
@@ -35,10 +40,10 @@ int main ()
         
         
         //Anzeige für Auswahl
-        cout << "Wählen Sie!:"                                       << endl;
-        cout << "1. Schere"                                          << endl;
-        cout << "2. Stein"                                           << endl;
-        cout << "3. Papier"                                         <<endl<< endl;
+        cout << "Wählen Sie!:"                                  << endl;
+        cout << SCHERE << ". Schere"                            << endl;
+        cout << STEIN << ". Stein"                              << endl;
+        cout << PAPIER << ". Papier"                            <<endl<< endl;
         cout << "Gespielte Runden:\t" <<      rounds            <<"\t"        ;
         cout << "Ich:\t" <<                   usrwins           <<"\t"        ;
         cout << "Computer\t" <<               cpwins            <<"\t"  <<endl;
@@ -49,8 +54,12 @@ int main ()
         
         
         //eingabe der Auswahl
-        cin >> auswahl;
-        
+        scanf("%d", (int*)&auswahl);/*
+        //Alternative eingabe:
+        int tmp = 0;
+        cin >> tmp;
+        auswahl = (auswahlEnum)tmp;
+        //*/
         
         //rand()  % 3 würde dir nur einen Wert  zwischen 0 und 2 geben,     daher noch das + 1
         
@@ -62,16 +71,16 @@ int main ()
         
         //Auswahl vergleichen
         switch (auswahl) {
-            case 1:                                 // user  auswahl Schere
+            case SCHERE:                                 // user  auswahl Schere
                 switch (zufallszahl) {
-                    case 1:
+                    case SCHERE:
                         cout << "Schere vs Schere"  <<endl;
                         cout << "Unentschieden"     <<endl;
                         rounds++;
                         
                         break;
                         
-                    case 2:
+                    case STEIN:
                         cout << "Schere vs Stein"  <<endl;
                         cout << "Verloren!!"  <<endl;
                         cpwins++;
@@ -79,7 +88,7 @@ int main ()
                         
                         break;
                         
-                    case 3:
+                    case PAPIER:
                         cout << "Schere vs Papier"  <<endl;
                         cout << "Gewonnen!!"  <<endl;
                         usrwins++;
@@ -95,12 +104,12 @@ int main ()
                 
                 
                 
-            case 2:     // Userauswahl Stein
+            case STEIN:     // Userauswahl Stein
                 
                 
                 switch (zufallszahl) {
                         
-                    case 1:
+                    case SCHERE:
                         cout << "Stein vs Schere"   <<endl;
                         cout << "Gewonnen!!"        <<endl;
                         rounds++;
@@ -108,14 +117,14 @@ int main ()
                         
                         break;
                         
-                    case 2:
+                    case STEIN:
                         cout << "Stein vs Stein"    <<endl;
                         cout << "Unentschieden"     <<endl;
                         rounds++;
                         
                         break;
                         
-                    case 3:
+                    case PAPIER:
                         cout << "Stein vs Papier"   <<endl;
                         cout << "Verloren!!"        <<endl;
                         cpwins++;
@@ -131,12 +140,12 @@ int main ()
                 
                 
                 
-            case 3:                 // Userauswahl Papier
+            case PAPIER:                 // Userauswahl Papier
                 
                 
                 
                 switch (zufallszahl) {
-                    case 1:
+                    case SCHERE:
                         cout << "Papier vs Schere"      <<endl;
                         cout << "Verloren!!"            <<endl;
                         cpwins++;
@@ -144,7 +153,7 @@ int main ()
                         
                         break;
                         
-                    case 2:
+                    case STEIN:
                         cout << "Papier vs Stein"       <<endl;
                         cout << "Gewonnen!!"         <<endl;
                         rounds++;
@@ -152,7 +161,7 @@ int main ()
                         
                         break;
                         
-                    case 3:
+                    case PAPIER:
                         cout << "Papier vs Papier"      <<endl;
                         cout << "Unentschieden"         <<endl;
                         rounds++;
